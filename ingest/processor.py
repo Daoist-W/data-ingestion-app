@@ -13,6 +13,7 @@ from typing import Dict
 import spacy
 
 from .debugging import app_logger as log
+from .models import Post, ProcessedPost
 
 class DataProcessor():
     
@@ -37,6 +38,11 @@ class DataProcessor():
     def process(self, text: str) -> Dict:
         return {'entities': self.entities(self.nlp(text))}
 
-    def process_message(self, post):
-        return None
+    def process_message(self, post) -> ProcessedPost:
+        return ProcessedPost(
+            **{
+                **post.dict(),
+                **self.process(post.content)
+            }
+        )
 

@@ -95,7 +95,7 @@ class Worker(Process):
 
         # this is the uncached method 
         for msg in iter(self.iq.get, 'STOP'):
-            self.oq.put(processor.process(msg))
+            self.oq.put(processor.process_message(msg))
 
         '''
             see now my understanding is it continuously get() messages from input queue iq and stores them
@@ -125,6 +125,9 @@ class Saver(Process):
         self.client = client
         self.persist_fn = persist_fn
 
+        # we also need to make sure that we call the init method from our super class
+        super(Saver, self).__init__()
+
     def shutdown(self, *args):
         log.info('shutting down saver')
         self.q.q.put('STOP')
@@ -141,6 +144,7 @@ class Saver(Process):
         # at the moment (sprint 5 part 1) the 'msg' is a dictionary returned by processor.process
         # we are going to change that into a tuple that matches the arguments required for persist
         for msg in iter(self.q.get, 'STOP'):
+            log.info(msg)
             self.persist_fn(self.client, *msg)
 
         exit(0)
