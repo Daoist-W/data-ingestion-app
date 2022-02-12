@@ -1,0 +1,6 @@
+spacy==2.3.2
+pydantic==1.5.1
+spacy-lookups-data==0.3.2
+
+[dev]
+pytest==5.4.3

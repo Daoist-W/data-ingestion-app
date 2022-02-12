@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: ingestion
+Version: 0.0.1
+Summary: A demo application created to accompany a Python course.
+Home-page: http://cloudacademy.com
+Author: Don Isiko
+Author-email: isikodon@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: learn python cloud academy
+Platform: UNKNOWN
+Provides-Extra: dev
