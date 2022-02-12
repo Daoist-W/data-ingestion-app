@@ -242,6 +242,9 @@ def main():
     # Setup the shutdown handlers to gracefully shutdown the processes.
     register_shutdown_handlers([iq, oq], [iprocs, oprocs])
 
+    # from .models import Post  # TESTING ONLY
+    # iq.put(Post(content="Don has $1000 for a new Nanko product", publication="me"))
+
     with ShutdownWatcher() as watcher:
         watcher.serve_forever()
     exit(0)

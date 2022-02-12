@@ -18,7 +18,7 @@ class QueueWrapper(object):
         self.name = name
         # set to either a queue that is passed into the constructor, or a multiprocessing queue that we create
         # this is just a fancy way of saying that if the value passed in q exists, use it, otherwise create one
-        self.q = q or Queue
+        self.q = q or Queue()
 
         # we need a way to signal when the queue is drained, and for some reason simply using a boolean wouldn't
         # work out how we'd expect it to
